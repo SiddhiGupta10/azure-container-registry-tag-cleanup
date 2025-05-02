@@ -5,11 +5,15 @@ Azure Container Registry (ACR) vulnerabilities can arise from several factors li
 In production environment, we have seen scenarios where thousand of old tags are exists in mutiple repositiories of  ACR, resulting into the vulnerability issues in future. In such scenarios, deleting old tags is the best way to remediate vulnerabilies arising from outdated base images or unpatched dependencies.
 
 We have curated 2 powershell scripts to delete multiple tags in one run.
-1. [**deleteTagsWithSkip**](https://github.com/SiddhiGupta10/azure-container-registry-tag-cleanup/blob/main/deleteTagsWithSkip.ps1) -
-   - This script deleted all the tags from the registry except the ones mentioned to skip.
+1. [**deleteTagsWithSkip**](https://github.com/SiddhiGupta10/azure-container-registry-tag-cleanup/blob/main/deleteTagsWithSkip.ps1)
+   - This script deletes all the tags from the registry except the ones mentioned to skip.
    - There are two parameters which decides undeleted tags list - doNotDeleteTags(array), skipLastTags(int).
-   - _Example_: .\deleteTagsWithSkip.ps1 -skipLastTags 10 -registryName <name-of-ACR> -doNotDeleteTags <array-of-tag
-1. [**deleteTagsWithDateRange**](https://github.com/SiddhiGupta10/azure-container-registry-tag-cleanup/blob/main/deleteTagsWithDateRange.ps1) - 
+   - _Example_: .\deleteTagsWithSkip.ps1 -registryName <name-of-ACR> -skipLastTags 10 -doNotDeleteTags <array-of-tags>
+
+1. [**deleteTagsWithDateRange**](https://github.com/SiddhiGupta10/azure-container-registry-tag-cleanup/blob/main/deleteTagsWithDateRange.ps1)
+   - This script deletes tags for teh specified date range.
+   - Parameters like _startDate_ and _endDate_ decides to-be-deleted tag list.
+   - _Example_: .\deleteTagsWithDateRange.ps1 -registryName <name-of-ACR> -startDate "2025-01-01" -endDate "2025-02-28"
 
 ## Delete untagged Manifest
 
