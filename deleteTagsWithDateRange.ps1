@@ -1,21 +1,38 @@
-# Define variables
-$registryName = "YourRegistryName"
-$repositoryName = "YourRepositoryName"
-$startDate = "2023-01-01"
-$endDate = "2023-12-31"
+[CmdletBinding()]
+param
+(
+    [Parameter(Mandatory = $true)]
+    [string]$startDate,
 
-# Get all tags in the repository
-$tags = az acr repository show-tags --name $registryName --repository $repositoryName --orderby time_desc --output json | ConvertFrom-Json
+    [Parameter(Mandatory = $true)]
+    [string]$endDate,
 
-# Filter tags based on date range
-$tagsToDelete = $tags | Where-Object {
-    $tagDate = [datetime]::ParseExact($_.lastUpdateTime, "yyyy-MM-ddTHH:mm:ssZ", $null)
-    $tagDate -ge [datetime]$startDate -and $tagDate -le [datetime]$endDate
-}
+    [Parameter(Mandatory = $true)]
+    [string]$registryName
+)
 
-# Delete filtered tags
-foreach ($tag in $tagsToDelete) {
-    az acr repository delete --name $registryName --image "$repositoryName:$tag" --yes
-    Write-Output "Deleted tag: $tag"
-}
+try{
+    #Fetch the list of repositories in passed registry
+    $repoArray = az acr repository list --name $registryName -o json | ConvertFrom-Json
 
+    #To pass specific repository, name them in array
+    #$repoArray = ("jobs/azuresearchfunc","jobs/manageeventfunc","jobs/notificationfunc")
+
+    foreach ($repository in $repoArray)
+    {
+        # Get all tags in the repository
+        $tagsArray = az acr repository show-tags --name $registryName --repository $repository --orderby time_desc --output json | ConvertFrom-Json
+
+        # Filter tags based on date range
+        $tagsToDelete = $tagsArray | Where-Object {
+            $tagDate = [datetime]::ParseExact($_.lastUpdateTime, "yyyy-MM-ddTHH:mm:ssZ", $null)
+            $tagDate -ge [datetime]$startDate -and $tagDate -le [datetime]$endDate
+        }
+                
+        # Delete filtered tags
+        foreach ($tag in $tagsToDelete) {
+            az acr repository delete --name $registryName --image $repository":"$tag --yes
+            Write-Output "Repository $($repository): Deleted $($tag)"
+        }
+    }
+    
