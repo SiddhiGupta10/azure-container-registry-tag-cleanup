@@ -5,7 +5,7 @@ Azure Container Registry (ACR) vulnerabilities can arise from several factors li
 In production environment, we have seen sceanrios where thousand of old tags are exists in mutiple repositiories of  ACR, resulting into the vulnerability issues in future. In such scenarios, deleting old tags is the best way to remediate vulnerabilies arising from outdated base images or unpatched dependencies.
 
 We have curated 2 powershell scripts to delete multiple tags in one run.
-1. [deleteTagsWithSkipFeature]() -
-1. [deleteTagsWithDateRange]() - 
+1. [deleteTagsWithSkip](https://github.com/SiddhiGupta10/azure-container-registry-tag-cleanup/blob/main/deleteTagsWithSkip.ps1) -
+1. [deleteTagsWithDateRange](https://github.com/SiddhiGupta10/azure-container-registry-tag-cleanup/blob/main/deleteTagsWithDateRange.ps1) - 
 
 Azure Container Registries notifies Defender for Cloud when images are deleted, and removes the vulnerability assessment for deleted images within one hour. In some rare cases, Defender for Cloud might not be notified on the deletion, and deletion of associated vulnerabilities in such cases might take up to three days.
