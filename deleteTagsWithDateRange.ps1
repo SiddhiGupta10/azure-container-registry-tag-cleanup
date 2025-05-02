@@ -1,3 +1,13 @@
+#This script deletes all the tags from the registry for specified date range.
+
+#Parameters:
+# registryName(String) - Name of the Azure Container Registry. Mandatory parameter
+# startDate(string)    - To fetching tags start from specified date range. Mandatory parameter
+# endDate(string)      - To fetching tags within end date range. Mandatory parameter
+
+#Example:
+# .\deleteTagsWithDateRange.ps1 -registryName <Name-of-ACR> -startDate "2025-01-01" -endDate "2025-02-28"
+
 [CmdletBinding()]
 param
 (
