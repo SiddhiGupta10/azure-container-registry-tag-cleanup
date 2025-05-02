@@ -8,12 +8,12 @@ We have curated 2 powershell scripts to delete multiple tags in one run.
 1. [**deleteTagsWithSkip**](https://github.com/SiddhiGupta10/azure-container-registry-tag-cleanup/blob/main/deleteTagsWithSkip.ps1)
    - This script deletes all the tags from the registry except the ones mentioned to skip.
    - There are two parameters which decides undeleted tags list - doNotDeleteTags(array), skipLastTags(int).
-   - _Example_: .\deleteTagsWithSkip.ps1 -registryName _<name-of-ACR>_ -skipLastTags 10 -doNotDeleteTags _<array-of-tags>_
+   - _Example_: .\deleteTagsWithSkip.ps1 -registryName _<nameOfACR>_ -skipLastTags 10 -doNotDeleteTags _<arrayOfTags>_
 
 1. [**deleteTagsWithDateRange**](https://github.com/SiddhiGupta10/azure-container-registry-tag-cleanup/blob/main/deleteTagsWithDateRange.ps1)
    - This script deletes tags for teh specified date range.
    - Parameters like _startDate_ and _endDate_ decides to-be-deleted tag list.
-   - _Example_: .\deleteTagsWithDateRange.ps1 -registryName _<name-of-ACR>_ -startDate "2025-01-01" -endDate "2025-02-28"
+   - _Example_: .\deleteTagsWithDateRange.ps1 -registryName _<nameOfACR>_ -startDate "2025-01-01" -endDate "2025-02-28"
 
 ## Delete untagged Manifest
 
