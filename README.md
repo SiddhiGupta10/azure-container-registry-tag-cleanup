@@ -15,7 +15,7 @@ We have curated 2 powershell scripts to delete multiple tags in one run.
 
 If an image with a stable tag is updated, the previously tagged image is untagged, resulting in an orphaned image. The previous image's manifest and unique layer data remain in the registry. To maintain your registry size, you can periodically delete untagged manifests resulting from stable image updates using either **auto-purge** or by **setting a retention policy**.
 
-1. Auto-purge removes untagged manifests older than a specified duration. But this cmd does not delete an image tag or repository where the _write-enabled_ attribute is set to **false**. _az acr run --registry <YOUR_REGISTRY> --cmd 'acr purge --untagged --ago <2d3h6m> --keep <int>' /dev/null_
+1. [Auto-purge](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-auto-purge) removes untagged manifests older than a specified duration. But this cmd does not delete an image tag or repository where the _write-enabled_ attribute is set to **false**. _az acr run --registry <YOUR_REGISTRY> --cmd 'acr purge --untagged --ago <2d3h6m> --keep <int>' /dev/null_
 
 You can use _--dry-run_ parameter for testing a purge command to make sure it does not inadvertently delete data you intend to preserve.
 
