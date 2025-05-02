@@ -1,16 +1,25 @@
+#This script deletes all the tags from the registry except the ones mentioned to skip either by specific tag number or recent ones from all.
+
+#Parameters:
+# registryName(String)   - Name of the Azure Container Registry. Mandatory parameter
+# skipLastTags(int)      - Count of the recent tags to be skipped. Mandatory parameter
+# doNotDeleteTags(array) - Array of tags which needs to be ignored for deletion. Optional parameter
+
+#Example:
+# .\deleteTagsWithSkip.ps1 -registryName <Name-of-ACR> -skipLastTags 10 -doNotDeleteTags 42712, 42761, 43614
+
 [CmdletBinding()]
 param
 (
-    [Parameter(Mandatory = $false)]
-    [ValidateNotNullOrEmpty()]
-    [string[]]$doNotDeleteTags,
-
-    [Parameter(Mandatory = $false)]
-    [ValidateNotNullOrEmpty()]
-    [string]$skipLastTags,
+    [Parameter(Mandatory = $true)]
+    [string]$registryName,
 
     [Parameter(Mandatory = $true)]
-    [string]$registryName
+    [int]$skipLastTags,
+
+    [Parameter(Mandatory = $false)]
+    [ValidateNotNullOrEmpty()]
+    [int[]]$doNotDeleteTags
 )
 
 try{
