@@ -21,7 +21,7 @@ You can use _--dry-run_ parameter for testing a purge command to make sure it do
 
 For example, _az acr run --registry <YOUR_REGISTRY> --cmd 'acr purge --untagged --ago 2d3h6m --keep 5 --dry-run' /dev/null_
 
-1. Set a [retention policy for untagged manifests](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-retention-policy). When a retention policy is enabled, untagged manifests in the registry are automatically deleted after a number of days you set. This feature prevents the registry from filling up with artifacts that aren't needed and helps you save on storage costs.
+2. Set a [retention policy for untagged manifests](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-retention-policy). When a retention policy is enabled, untagged manifests in the registry are automatically deleted after a number of days you set. This feature prevents the registry from filling up with artifacts that aren't needed and helps you save on storage costs.
 
 ## How long it takes to get updated vulnerabilities reports after deletion?
 
