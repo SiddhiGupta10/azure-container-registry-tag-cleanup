@@ -15,7 +15,7 @@ We have curated two powershell scripts to delete multiple tags in one run.
    - Parameters like _startDate_ and _endDate_ decides to-be-deleted tag list.
    - _Example_: .\deleteTagsWithDateRange.ps1 -registryName _<name_Of_ACR>_ -startDate "2025-01-01" -endDate "2025-02-28"
 
-## Delete untagged Manifest
+## Delete untagged manifest
 
 If an image with a stable tag is updated, the previously tagged image is untagged, resulting in an orphaned image. The previous image's manifest and unique layer data remain in the registry. To maintain your registry size, you can periodically delete untagged manifests resulting from stable image updates using either **auto-purge** or by **setting a retention policy**.
 
