@@ -29,8 +29,8 @@ try{
                 Write-Output " $($repository) : This tag is not deleted $($tag)"
             } 
             elseif ($donotdeletetags -NotContains $tag) {     
-                Write-Output "Repository $($repository): Deleting $($tag)"
                 az acr repository delete --name $registryName --image $repository":"$tag --yes
+                Write-Output "Repository $($repository): Deleted $($tag)"
             }
         }
     }
